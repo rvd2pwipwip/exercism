@@ -42,19 +42,55 @@
 //   return encoding;
 // }
 
+// const transportation = data.reduce((obj, item) => {
+//   if (!obj[item]) {
+//     obj[item] = 0;
+//   }
+//   obj[item]++;
+//   return obj;
+// }, {});
+// console.log(transportation);
+
+// const encode = str => {
+//   let count = 1;
+//   let letter;
+//   return [...str].reduce((code = '', c, i) => {
+//     // console.log(c);
+//     debugger;
+//     if (letter === c) {
+//       count++;
+//     } else {
+//       if (i !== 0) {
+//         code += `${count}${letter}`;
+//         letter = c;
+//         count = 1;
+//       } else {
+//         letter = c;
+//         count = 1;
+//       }
+//     }
+//   }, "");
+// };
+
 const encode = str => {
-  let count = 0;
-  let start = "";
-  return [...str].reduce((code, c) => {
+  let count = 1;
+  let letter;
+  let code = "";
+  return [...str].forEach((c, i) => {
     // console.log(c);
-    if (count === 0) {
+    debugger;
+    if (letter === c) {
       count++;
-      start = c;
-      code += c;
     } else {
-      if (c === start) count++;
+      if (i !== 0) {
+        code += `${count}${letter}`;
+        letter = c;
+        count = 1;
+      } else {
+        letter = c;
+        count = 1;
+      }
     }
-    return `${count}${code}`;
   }, "");
 };
 
