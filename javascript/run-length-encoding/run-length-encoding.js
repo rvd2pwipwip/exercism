@@ -1,3 +1,5 @@
+import { parseExpression } from "@babel/parser";
+
 export const encode = str => {
   let count = 1;
   let code = "";
@@ -10,6 +12,22 @@ export const encode = str => {
   return code;
 };
 
-//expect(decode("2A3B4C")).toEqual("AABBBCCCC");
+//expect(decode("12A3B4C")).toEqual("AABBBCCCC");
 
-export const decode = str => {};
+const decode = str => {
+  let countString = "";
+  let string = "";
+  debugger;
+  [...str].forEach((c, i) => {
+    if (parseInt(c)) {
+      countString += c;
+    } else {
+      if (isNaN(c)) {
+        string += `${c}`;
+      } else string += `${c.repeat(parseInt(countString))}`;
+    }
+  });
+  return string;
+};
+
+decode("12A3B4C");
